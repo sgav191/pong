@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import turtle
 screen = turtle.Screen()
-screen.title("Pong")
+screen.title("Pong Game")
 screen.setup(1000,600)
 screen.bgcolor("white")
 #Left Paddle Code
@@ -110,7 +110,7 @@ while True:
 	# change ball direction
 	# increase the opponents score by 1 and display it
 
-	# Check if ball has hit the right hand side of the screen and 
+	# Check if ball has hit the right hand side of the screen and
 	# reset ball back to the center
 	# change ball direction
 	# increase the opponents score by 1 and display it
