@@ -32,18 +32,7 @@ bx = 5
 by = -5
 paddlesize = 50
 
-
-
-
-
-
-
-
-
-
-
-
-
+# Displays the score
 
 
 
@@ -116,6 +105,15 @@ while True:
 		if newy > lptop and newy < lpbottom:
 			bx = bx*-1
 
+	# Check if ball has hit the left hand side of the screen and
+	# reset ball back to the center
+	# change ball direction
+	# increase the opponents score by 1 and display it
+
+	# Check if ball has hit the right hand side of the screen and 
+	# reset ball back to the center
+	# change ball direction
+	# increase the opponents score by 1 and display it
+
 	ball.setx(newx)
 	ball.sety(newy)
-	
