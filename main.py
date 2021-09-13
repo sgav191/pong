@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import turtle
 screen = turtle.Screen()
-screen.title("The Pong Identity")
+screen.title("Pong")
 screen.setup(1000,600)
-turtle.bgcolor("white")
+screen.bgcolor("white")
 #Left Paddle Code
 leftpaddle = turtle.Turtle()
 leftpaddle.speed(0)
@@ -48,28 +48,29 @@ paddlesize = 50
 
 
 #Paddle Functions
+paddlespeed = 20
 def LeftPaddleUp():
-	
+
 	y = leftpaddle.ycor()
-	y = y+10
+	y = y+paddlespeed
 	if y < 250:
 		leftpaddle.sety(y)
 def LeftPaddleDown():
 	y = leftpaddle.ycor()
-	y = y-10
+	y = y-paddlespeed
 	if y > -250:
 		leftpaddle.sety(y)
-	
+
 
 def RightPaddleUp():
 	y = rightpaddle.ycor()
-	y = y+10
+	y = y+paddlespeed
 	if y < 250:
 		rightpaddle.sety(y)
-		
+
 def RightPaddleDown():
 	y = rightpaddle.ycor()
-	y = y-10
+	y = y-paddlespeed
 	if y > -250:
 		rightpaddle.sety(y)
 
@@ -86,20 +87,35 @@ while True:
 	screen.update()
 	newx = ball.xcor() + bx
 	newy = ball.ycor() + by
+
 	if newy < -280:
 		by = by*-1
+
 	if newy > 285:
 		by = by*-1
-	rpx = rightpaddle.xcor()-10
-	lpx = leftpaddle.xcor()
+
+	# COLLISON DETECTION
+	# When testing for collison we need to allow for the ball width and height
+	# So create 2 new variables which are the ball x + the ball width
+	# and the ball y + the height
+	# depending on the surface you are hitting you will need to adjust this setting
+
+	# the paddle width is 35
+	rpx = rightpaddle.xcor()-35
+	lpx = leftpaddle.xcor()+35
+
 	if newx > rpx:
 		rptop = rightpaddle.ycor() - paddlesize
 		rpbottom = rightpaddle.ycor() + paddlesize
 		if newy > rptop and newy < rpbottom:
 			bx = bx*-1
+
 	if newx < lpx:
-		bx = bx*-1
-		
+		lptop = leftpaddle.ycor() - paddlesize
+		lpbottom = leftpaddle.ycor() + paddlesize
+		if newy > lptop and newy < lpbottom:
+			bx = bx*-1
+
 	ball.setx(newx)
 	ball.sety(newy)
 	
