@@ -49,7 +49,7 @@ paddlesize = 50
 
 #Paddle Functions
 def LeftPaddleUp():
-	
+
 	y = leftpaddle.ycor()
 	y = y+10
 	if y < 250:
@@ -59,14 +59,14 @@ def LeftPaddleDown():
 	y = y-10
 	if y > -250:
 		leftpaddle.sety(y)
-	
+
 
 def RightPaddleUp():
 	y = rightpaddle.ycor()
 	y = y+10
 	if y < 250:
 		rightpaddle.sety(y)
-		
+
 def RightPaddleDown():
 	y = rightpaddle.ycor()
 	y = y-10
@@ -86,20 +86,33 @@ while True:
 	screen.update()
 	newx = ball.xcor() + bx
 	newy = ball.ycor() + by
+
 	if newy < -280:
 		by = by*-1
+
 	if newy > 285:
 		by = by*-1
+
+	# COLLISON DETECTION
+	# When testing for collison we need to allow for the ball width and height
+	# So create 2 new variables which are the ball x + the ball width
+	# and the ball y + the height
+	# depending on the surface you are hitting you will need to adjust this setting
+
+	# the paddle width is 35
 	rpx = rightpaddle.xcor()-10
 	lpx = leftpaddle.xcor()
+
 	if newx > rpx:
 		rptop = rightpaddle.ycor() - paddlesize
 		rpbottom = rightpaddle.ycor() + paddlesize
 		if newy > rptop and newy < rpbottom:
 			bx = bx*-1
+
 	if newx < lpx:
+		# check if the ball is > the paddle y - paddle size
+		# check if the ball is < the paddle y + paddle size
 		bx = bx*-1
-		
+
 	ball.setx(newx)
 	ball.sety(newy)
-	
